@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 import { supabase } from "@/lib/supabase";
 
-const BASE_URL = "https://www.casinorankbet.com";
+const BASE_URL = "https://casinorankbet.com";
 
 type SitemapRow = {
   countries: { slug: string } | { slug: string }[];
