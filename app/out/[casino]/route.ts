@@ -2,11 +2,11 @@ import { NextRequest, NextResponse } from "next/server";
 import { supabase } from "@/lib/supabase";
 
 type RouteContext = {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ casino: string }>;
 };
 
 export async function GET(request: NextRequest, context: RouteContext) {
-  const { slug } = await context.params;
+  const { casino: slug } = await context.params;
 
   // 1. Buscar el enlace de afiliado del casino en Supabase
   const { data: casino } = await supabase
