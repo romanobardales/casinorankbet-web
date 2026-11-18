@@ -1,6 +1,8 @@
 import { Suspense } from "react";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { supabase } from "@/lib/supabase";
+import RelatedGuides from "@/components/RelatedGuides";
 import type { Metadata } from "next";
 
 type PageProps = {
@@ -72,8 +74,16 @@ async function SeoArticle({ params }: PageProps) {
 
   return (
     <article className="max-w-3xl mx-auto">
-      <div className="mb-4 text-xs uppercase tracking-wider text-emerald-400 font-semibold">
-        {country} · {payment} · {game}
+      <div className="mb-6 flex items-center justify-between gap-4">
+        <div className="text-xs uppercase tracking-wider text-emerald-400 font-semibold">
+          {country} · {payment} · {game}
+        </div>
+        <Link
+          href="/"
+          className="text-xs text-slate-400 hover:text-emerald-400 transition"
+        >
+          ← Todas las guías
+        </Link>
       </div>
 
       <h1 className="text-3xl md:text-4xl font-extrabold text-white mb-8 leading-tight">
@@ -105,6 +115,13 @@ async function SeoArticle({ params }: PageProps) {
       <div
         className="text-slate-300 [&_h2]:text-2xl [&_h2]:font-bold [&_h2]:text-white [&_h2]:mt-8 [&_h2]:mb-3 [&_h3]:text-xl [&_h3]:font-semibold [&_h3]:text-emerald-300 [&_h3]:mt-6 [&_h3]:mb-2 [&_p]:mb-4 [&_p]:leading-relaxed [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:mb-4 [&_li]:mb-2 [&_strong]:text-white"
         dangerouslySetInnerHTML={{ __html: page.body_html }}
+      />
+
+      <RelatedGuides
+        countrySlug={country}
+        paymentSlug={payment}
+        gameSlug={game}
+        bonusSlug={bonus}
       />
     </article>
   );
